@@ -1,0 +1,33 @@
+---
+version: '3'
+
+services:
+  sonarr:
+    image: linuxserver/radarr:develop
+    container_name: Radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - /Servarr/Config/Radarr:/config:rw
+      - /srv/1.4TB/Servarr/media/movies:/movies:rw
+      - /srv/1.4TB/Servarr/qBittorrent/movies:/downloads:rw
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+    networks:
+      - arr_stack
+      - traefik_backend
+    
+
+networks:
+  arr_stack:
+    external:
+      name: arr_stack
+  traefik_backend:
+    external:
+      name: traefik_backend
+
+
+

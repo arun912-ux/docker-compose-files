@@ -1,0 +1,39 @@
+---
+version: '3'
+
+services:
+  qbittorrent:
+    image: linuxserver/qbittorrent:latest
+    container_name: qBittorrent
+    env_file:
+      - .env
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+      - WEBUI_PORT=8084
+      - TORRENTING_PORT=6881
+    volumes:
+      - /Servarr/Config/qBittorrent:/config
+      - /srv/1.4TB/Servarr/qBittorrent:/downloads
+    ports:
+      - 8084:8084 # WEBUI_PORT:WEBUI_PORT
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
+    networks:
+      - arr_stack
+      - traefik_backend
+    
+
+networks:
+  arr_stack:
+    external:
+      name: arr_stack
+  traefik_backend:
+    external:
+      name: traefik_backend
+
+
+
+

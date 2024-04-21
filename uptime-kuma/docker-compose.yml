@@ -1,0 +1,27 @@
+---
+version: '3'
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    environment:
+      - PGID=0
+      - PUID=0
+    ports:
+      - 3001:3001
+    volumes:
+      - /Servarr/Config/UptimeKuma/data:/app/data
+    restart: unless-stopped
+    networks:
+      - backend
+      - arr_stack
+
+
+networks:
+  backend:
+    external:
+      name: traefik_backend
+  arr_stack:
+    external:
+      name: arr_stack

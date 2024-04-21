@@ -1,0 +1,34 @@
+---
+version: '3'
+
+services:
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: Bazarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - /Servarr/Config/Bazarr/config:/config
+      - /mnt/1.4TB/Servarr/media/tv:/tv
+      - /mnt/1.4TB/Servarr/media/movies:/movies
+      # - /mnt/1.4TB/Servarr/media/anime:/anime
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+    networks:
+      - arr_stack
+      - traefik_backend
+
+
+networks:
+  arr_stack:
+    external:
+      name: arr_stack
+  traefik_backend:
+    external:
+      name: traefik_backend
+
+
+

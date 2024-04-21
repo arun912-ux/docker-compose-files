@@ -1,0 +1,35 @@
+version: '3'
+
+
+networks:
+  traefik_backend:
+    external:
+      name: traefik_backend
+
+
+services:
+  reverse-proxy:
+    container_name: traefik
+    # The official v2 Traefik docker image
+    image: traefik:latest
+
+    # Enables the web UI and tells Traefik to listen to docker
+    # command: --api.insecure=true --providers.docker
+    
+    # environment:
+      # - CF_DNS_API_TOKEN=your-cloudflare-api-token
+    ports:
+      # The HTTP/S ports
+      - 80:80
+      - 443:443
+      # The Web UI (enabled by --api.insecure=true)
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /Servarr/Config/traefik/traefik.yaml:/etc/traefik/traefik.yaml
+      - /Servarr/Config/traefik/config/conf/:/etc/traefik/conf/
+      - /Servarr/Config/traefik/config/certs/:/etc/traefik/certs/
+
+    restart: unless-stopped
+    networks:
+      - traefik_backend

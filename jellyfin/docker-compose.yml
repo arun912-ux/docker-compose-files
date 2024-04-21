@@ -1,0 +1,49 @@
+---
+version: '3'
+
+services:
+  jellyfin:
+    image: linuxserver/jellyfin:latest
+    container_name: Jellyfin
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Kolkata
+      # - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+    volumes:
+      - /Servarr/Config/Jellyfin:/config
+      # - jellyfin:/config
+      - /mnt/1.4TB/Servarr/media/tv:/data/tvshows
+      - /mnt/1.4TB/Servarr/media/movies:/data/movies
+      - /mnt/1.4TB/Servarr/media/anime:/data/anime
+    ports:
+      - 8096:8096
+      # - 8920:8920 # https
+      # - 7359:7359/udp #optional
+      # - 1900:1900/udp #optional
+    
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.http.routers.jellyfin.entrypoints=web"  # 80
+    #   - "traefik.http.routers.jellyfin.rule=Host(`nano.chaco-climb.ts.net`)"
+    #   - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
+
+    restart: unless-stopped
+    networks:
+      - arr_stack
+      - traefik_backend
+
+
+networks:
+  arr_stack:
+    external:
+      name: arr_stack
+  traefik_backend:
+    external:
+      name: traefik_backend
+
+
+volumes: 
+  jellyfin:
+    external:
+      name: jellyfin

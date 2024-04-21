@@ -1,0 +1,27 @@
+---
+version: '3'
+
+services:
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: Jellyseerr
+    environment:
+      - LOG_LEVEL=info
+      - TZ=Asia/Kolkata
+    ports:
+      - 5055:5055
+    volumes:
+      - /Servarr/Config/JellySeerr:/app/config
+    restart: on-failure
+    networks:
+      - arr_stack
+      - traefik_backend
+
+networks:
+  arr_stack:
+    external:
+      name: arr_stack
+  traefik_backend:
+    external:
+      name: traefik_backend
+

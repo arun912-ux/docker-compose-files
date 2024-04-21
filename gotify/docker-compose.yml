@@ -1,0 +1,28 @@
+---
+version: '3'
+
+services:
+  gotify:
+    image: ghcr.io/gotify/server-arm64:latest
+    container_name: Gotify
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Kolkata
+    volumes:
+      - /Servarr/Config/Gotify/config:/config
+    ports:
+      - 8383:80
+    restart: unless-stopped
+    networks:
+      - arr_stack
+      - traefik_backend
+
+
+networks:
+  arr_stack:
+    external:
+      name: arr_stack
+  traefik_backend:
+    external:
+      name: traefik_backend

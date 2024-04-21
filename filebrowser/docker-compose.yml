@@ -1,0 +1,40 @@
+---
+version: '3'
+
+services:
+  filebrowser:
+    image: filebrowser/filebrowser:s6
+    container_name: File_Browser
+    environment:
+      # giving root access for binding port 80 and write access to all folders
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Kolkata
+    volumes:
+      - /Servarr/Config/filebrowser/settings.json:/config/settings.json
+      - /Servarr/Config/filebrowser/filebrowser.db:/database/filebrowser.db
+      - /:/srv
+
+    ports:
+      - 8082:80
+
+    labels:
+      - "traefik.enable=true"
+      # - "traefik.http.routers.filebrowser.entrypoints=websecure"  # 443
+      - "traefik.http.routers.filebrowser.entrypoints=web, websecure"  # 80
+      - "traefik.http.routers.filebrowser.rule=Host(`filebrowser.nano.chaco-climb.ts.net`)"
+      - "traefik.http.services.filebrowser.loadbalancer.server.port=8082"
+      # - "traefik.http.routers.filebrowser.tls.certresolver=traefik"
+      # - "traefik.http.routers.filebrowser.tls=true"
+
+    restart: unless-stopped
+    networks:
+      - traefik_backend
+    
+
+
+networks:
+  traefik_backend:
+    external:
+      name: traefik_backend
+
