@@ -10,10 +10,10 @@ update_all() {
         echo "cd" "/home/arun/Documents/docker-compose-files/$container"
         cd "/home/arun/Documents/docker-compose-files/$container"
         
-        # docker-compose down && docker-compose pull && docker-compose build --pull && docker-compose up -d --force-recreate
+        docker-compose down && docker-compose pull && docker-compose build --pull && docker-compose up -d --force-recreate
         
-        while [ $? -ne 0 ] 
-        do 
+        while [ $? -ne 0 ]
+        do
             docker-compose down && docker-compose pull && docker-compose build --pull && docker-compose up -d --force-recreate
         done
 
@@ -27,19 +27,28 @@ update() {
     echo "cd" "/home/arun/Documents/docker-compose-files/$1"
     cd "/home/arun/Documents/docker-compose-files/$1"
     echo "updating $1 ..."
-    # docker-compose down && docker-compose pull && docker-compose build --pull && docker-compose up -d --force-recreate
-    while [ $? -ne 0 ] 
-    do 
+    docker-compose down && docker-compose pull && docker-compose build --pull && docker-compose up -d --force-recreate
+    while [ $? -ne 0 ]
+    do
         docker-compose down && docker-compose pull && docker-compose build --pull && docker-compose up -d --force-recreate
     done
 
 }
 
 
+# start of script 
+
 if [ $# -eq 0 ]
 then
     echo "No docker name passed. Upating all active containers... \\n"
     update_all
+elif [ $# -gt 1 ]
+then
+    echo "Provided $@"
+    for container in $@ 
+    do
+        update $container
+    done 
 else
     echo "Updating $1 container..."
     update $1

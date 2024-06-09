@@ -1,0 +1,4 @@
+
+jellyfin/config/*
+!jellyfin/config/*.xml
+!jellyfin/config/users/

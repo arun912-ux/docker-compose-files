@@ -3,16 +3,18 @@ version: '3'
 
 services:
   jellyfin:
-    image: linuxserver/jellyfin:latest
+    image: lscr.io/linuxserver/jellyfin:latest
     container_name: Jellyfin
     environment:
       - PUID=0
       - PGID=0
       - TZ=Asia/Kolkata
       # - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+      - JELLYFIN_PublishedServerUrl=192.168.1.4 #optional
     volumes:
-      - /Servarr/Config/Jellyfin:/config
-      # - jellyfin:/config
+      #- /Servarr/Config/Jellyfin:/config
+      #- jellyfin:/config
+      - ./config:/config
       - /mnt/1.4TB/Servarr/media/tv:/data/tvshows
       - /mnt/1.4TB/Servarr/media/movies:/data/movies
       - /mnt/1.4TB/Servarr/media/anime:/data/anime
@@ -21,7 +23,7 @@ services:
       # - 8920:8920 # https
       # - 7359:7359/udp #optional
       # - 1900:1900/udp #optional
-    
+
     # labels:
     #   - "traefik.enable=true"
     #   - "traefik.http.routers.jellyfin.entrypoints=web"  # 80
