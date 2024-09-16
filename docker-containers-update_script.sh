@@ -2,7 +2,7 @@
 
 update_all() {
 
-    docker_containers=(prowlarr sonarr radarr jellyfin jellyseerr qBittorrent uptime-kuma)
+    docker_containers=(filebrowser prowlarr sonarr radarr jellyfin jellyseerr qBittorrent uptime-kuma)
 
     for container in ${docker_containers[@]}
     do 
