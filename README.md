@@ -16,12 +16,27 @@ The following services are included:
 - Jellyseerr: a media discovery tool for Jellyfin 
 - Pi-hole: a DNS-based ad blocker
 - Portainer: a container management tool
+- Portainer Agent: an agent for Portainer to monitor Docker containers from other Portainer instances
 - Prowlarr: a indexer manager for Radarr and Sonarr
-- Qbittorrent: a torrent client
+- qBittorrent: a torrent client
 - Radarr: a video library manager
 - Sonarr: a TV series library manager
+- bazarr: a companion application to Sonarr and Radarr that manages and downloads subtitles for your movies and TV shows
 - Traefik: a reverse proxy and load balancer
 - Uptime-Kuma: a self-hosted uptime monitoring tool
+- Bezel: a monitoring agent for Docker, Linux, and other systems
+- cadvisor: a monitoring tool for Docker containers that provides Prometheus metrics
+- Grafana: an open-source analytics and monitoring dashboard
+- Prometheus: a monitoring system and time series database
+- it-tools: a collection of miscellaneous useful tools
+- Jenkins: a continuous integration and continuous deployment (CI/CD) tool
+- Kafka: a distributed streaming platform and message broker
+- mariadb: a relational database management system (RDBMS) and a popular alternative to MySQL
+- Sonarqube: an open-source platform for continuous inspection of code quality
+- Stirling-PDF: a free and open-source PDF editor that can be used online or self-hosted
+- tsdproxy: a reverse proxy that uses the Tailscale network to provide secure access to Docker containers
+- WordPress: a free and open-source content management system (CMS) that is widely used for creating websites and blogs
+
 
 ## Shell Scripts
 
