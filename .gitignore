@@ -1,4 +1,10 @@
 
-jellyfin/config/*
+jellyfin/config/**
 !jellyfin/config/*.xml
 !jellyfin/config/users/
+wordpress/wp_data
+beszel/beszel_host/beszel_data
+mariadb/config/*
+tsdproxy/.env
+
+

@@ -24,7 +24,7 @@ The following services are included:
 - bazarr: a companion application to Sonarr and Radarr that manages and downloads subtitles for your movies and TV shows
 - Traefik: a reverse proxy and load balancer
 - Uptime-Kuma: a self-hosted uptime monitoring tool
-- Bezel: a monitoring agent for Docker, Linux, and other systems
+- Beszel: a monitoring agent for Docker, Linux, and other systems.
 - cadvisor: a monitoring tool for Docker containers that provides Prometheus metrics
 - Grafana: an open-source analytics and monitoring dashboard
 - Prometheus: a monitoring system and time series database

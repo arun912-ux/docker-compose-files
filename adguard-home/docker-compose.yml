@@ -1,0 +1,19 @@
+---
+#version: "3"
+
+services:
+  adguardhome:
+    image: adguard/adguardhome
+    container_name: adguard-home
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 784:784/udp    # DNS-over-QUIC
+      - 853:853/tcp    # DNS-over-TLS
+      - 3000:3000/tcp  # admin panel
+#      - 80:80/tcp
+#      - 443:443/tcp
+    volumes:
+      - ./workdir:/opt/adguardhome/work
+      - ./confdir:/opt/adguardhome/conf
+    restart: unless-stopped
