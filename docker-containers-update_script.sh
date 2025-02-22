@@ -1,25 +1,5 @@
 #! /bin/bash
 
-update_all() {
-
-    docker_containers=(filebrowser prowlarr sonarr radarr jellyfin jellyseerr qBittorrent uptime-kuma)
-
-    for container in ${docker_containers[@]}
-    do 
-        echo "Updating $container ..."
-        echo "cd" "/home/arun/Documents/docker-compose-files/$container"
-        cd "/home/arun/Documents/docker-compose-files/$container"
-        
-        docker-compose down && docker-compose pull && docker-compose build --pull && docker-compose up -d --force-recreate
-        
-        while [ $? -ne 0 ]
-        do
-            docker-compose down && docker-compose pull && docker-compose build --pull && docker-compose up -d --force-recreate
-        done
-
-    done
-
-}
 
 update() {
 
@@ -34,6 +14,22 @@ update() {
     done
 
 }
+
+
+update_all() {
+
+    # docker_containers=(filebrowser prowlarr sonarr radarr jellyfin jellyseerr qBittorrent uptime-kuma)
+    docker_containers=(portainer-agent filebrowser it-tools stirling-pdf jellyfin jellyseerr qBittorrent)
+
+    for container in ${docker_containers[@]}
+    do 
+        echo "Updating $container ..."
+        update $container
+
+    done
+
+}
+
 
 
 # start of script 
@@ -56,6 +52,7 @@ fi
 
 
 echo "Pruning unused docker images..."
+docker image prune -af
 cd "/home/arun/Documents/docker-compose-files/"
 ./docker-image-prune-af.sh
 

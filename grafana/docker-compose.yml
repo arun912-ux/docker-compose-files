@@ -1,0 +1,33 @@
+
+---
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: "grafana"  # Default admin password (change it!)
+    volumes:
+      - grafana_data:/var/lib/grafana  # Volume to persist Grafana data (e.g., dashboards, configurations)
+    ports:
+      - "3001:3000"  # Grafana web UI
+    
+    labels:
+      - tsdproxy.enable=true
+      - tsdproxy.name=grafana
+      - tsdproxy.container_port=3001
+    
+    restart: unless-stopped
+
+    networks:
+      - tailscale
+
+
+volumes:
+    grafana_data: 
+      external: true
+
+networks:
+  tailscale:
+    external: true
+

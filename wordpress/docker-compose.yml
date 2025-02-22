@@ -1,0 +1,20 @@
+---
+services:
+  wordpress:
+    container_name: wordpress
+    image: wordpress:latest
+    volumes:
+      - ./wp_data:/var/www/html
+    ports:
+      - 8090:80
+    restart: unless-stopped
+    environment:
+      - WORDPRESS_DB_HOST=172.17.0.1
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=root123
+      - WORDPRESS_DB_NAME=wordpress
+    labels:
+      - tsdproxy.enable=false
+      - tsdproxy.name=wordpress
+      - tsdproxy.container_port=8090
+

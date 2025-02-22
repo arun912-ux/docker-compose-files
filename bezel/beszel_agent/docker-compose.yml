@@ -12,4 +12,4 @@ services:
       - /mnt/1.4TB/.beszel:/extra-filesystems/sda1:ro
     environment:
       PORT: 45876
-      KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILEm6TQ2E/2YE5+8JU5FliggpvCKqmjWBBs6lpELF+CB"
+      KEY: "ssh-ed25519 key"
