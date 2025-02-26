@@ -5,6 +5,7 @@ jellyfin/config/**
 wordpress/wp_data
 beszel/beszel_host/beszel_data
 mariadb/config/*
-tsdproxy/.env
+tsdproxy/.secret
+
 
 

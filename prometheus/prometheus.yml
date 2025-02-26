@@ -15,11 +15,11 @@ scrape_configs:
            - '100.65.137.9:5252'
 
 
-  - job_name: 'traefik'
-    scrape_interval: 5s
-    static_configs:
-      - targets:
-           - '100.99.6.77:8080'
+#  - job_name: 'traefik'
+#    scrape_interval: 5s
+#    static_configs:
+#      - targets:
+#           - '100.99.6.77:8080'
 
   - job_name: 'cadvisor'
     scrape_interval: 5s
@@ -27,7 +27,7 @@ scrape_configs:
       - targets:
           - '100.99.6.77:8086'
 
-  - job_name: 'traefik.internal'
+#  - job_name: 'traefik.internal'
     # scrape_interval: 15s
     # dns_sd_configs:
     #   - names:

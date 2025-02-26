@@ -1,0 +1,33 @@
+{
+	admin 0.0.0.0:2019
+}
+
+:80 {
+}
+
+*.proxy.internal {
+	@ollama host ollama.proxy.internal
+	handle @ollama {
+		reverse_proxy http://100.99.6.77:3000
+	}
+
+	@portainer host portainer.proxy.internal
+	handle @portainer {
+		reverse_proxy http://100.99.6.77:9000
+	}
+
+	@it-tools host it-tools.proxy.internal
+	handle @it-tools {
+		reverse_proxy http://nano:8088
+	}
+
+	@pdf host pdf.proxy.internal
+	handle @pdf {
+		reverse_proxy http://nano:8091
+	}
+
+	@keycloak host keycloak.proxy.internal
+	handle @keycloak {
+		reverse_proxy http://100.126.110.46:9080
+	}
+}

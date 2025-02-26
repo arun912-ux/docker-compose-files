@@ -10,22 +10,25 @@ services:
       - "80:80"
       - "443:443"
       - "443:443/udp"
+      - "2019:2019"
 
     volumes:
-      - /Servarr/Config/Caddy/Caddyfile:/etc/caddy/Caddyfile
-      - /Servarr/Config/Caddy/site:/srv
-      - /Servarr/Config/Caddy/data:/data
-      - /Servarr/Config/Caddy/config:/config
+      # - /Servarr/Config/Caddy/Caddyfile:/etc/caddy/Caddyfile
+      # - /Servarr/Config/Caddy/site:/srv
+      # - /Servarr/Config/Caddy/data:/data
+      # - /Servarr/Config/Caddy/config:/config
+      - ./data/caddyfile:/etc/caddy/Caddyfile
+      - ./data/site:/srv
+      - ./data/data:/data
+      - ./data/config:/config
       # tailscaled.sock is used by Caddy to connect to tailscale to request trusted ssl certificates
       - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
-    
+
     restart: unless-stopped
+    network_mode: host
+#     networks:
+#       - proxy
 
-    networks:
-      - traefik_backend
-
-networks:
-  traefik_backend:
-    external:
-      name: traefik_backend
-
+# networks:
+#   proxy:
+#     external: true

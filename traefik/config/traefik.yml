@@ -68,7 +68,7 @@ providers:
 
 metrics:
   prometheus: {}
-  
+
 
 accesslog:
   format: common
