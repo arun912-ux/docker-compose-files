@@ -5,6 +5,7 @@
 services:
   postgresql:
     image: postgres:16
+    user: root
     environment:
       - POSTGRES_USER=keycloak
       - POSTGRES_DB=keycloak
@@ -36,6 +37,11 @@ services:
       - KC_DB_URL_DATABASE=keycloak
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
+
+    labels:
+      - tsdproxy.enable=true        # labels for tsdproxy
+      - tsdproxy.name=keycloak
+
 #    networks:
 #      proxy:
 #      keycloak:

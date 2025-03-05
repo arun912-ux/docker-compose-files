@@ -1,11 +1,16 @@
 {
 	admin 0.0.0.0:2019
+	debug
 }
 
 :80 {
+	respond `{"Hello": "80"}`
 }
 
+
+
 *.proxy.internal {
+
 	@ollama host ollama.proxy.internal
 	handle @ollama {
 		reverse_proxy http://100.99.6.77:3000
@@ -28,6 +33,24 @@
 
 	@keycloak host keycloak.proxy.internal
 	handle @keycloak {
-		reverse_proxy http://100.126.110.46:9080
+		reverse_proxy {
+			to http://192.168.124.1:9080
+		}
+	}
+
+	@jenkins host jenkins.proxy.internal
+	handle @jenkins {
+		reverse_proxy {
+			to http://100.126.110.46:8880
+		}
+	}
+
+	@adguard host jenkins.proxy.internal
+	handle @adguard {
+		reverse_proxy {
+			to http://100.126.110.46:3000
+			to http://192.168.124.141:3000
+			lb_policy round_robin
+		}
 	}
 }
