@@ -8,6 +8,10 @@
 }
 
 
+http://app.spring.internal {
+	reverse_proxy http://localhost:8080
+}
+
 
 *.proxy.internal {
 

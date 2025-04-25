@@ -1,5 +1,4 @@
 ---
-#version: '3'
 
 services:
   mariadb:
@@ -8,8 +7,8 @@ services:
     env_file:
       - .env
     environment:
-      - PUID=1000
-      - PGID=1000
+#      - PUID=1000
+#      - PGID=1000
       - TZ=Asia/Kolkata
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 #      - MYSQL_DATABASE=${USER_DB_NAME} #optional
@@ -18,7 +17,14 @@ services:
 #      - REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql #optional
 
     volumes:
-      - ./config:/config
+      - ~/docker/data/config/mariadb:/config
     ports:
       - 3306:3306
     restart: unless-stopped
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+

@@ -1,0 +1,32 @@
+---
+
+
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: unless-stopped
+    ports:
+      - 3030:3000
+    env_file:
+      - .env # use .env
+    volumes:
+      - ~/docker/data/config/homepage:/app/config # Make sure your local config directory exists
+      - ~/docker/data:/root/docker/data    # drive space
+      - /root/docker/data:/app/drive      # drive
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations, see alternative methods
+    environment:
+      TZ: "Asia/Kolkata"
+      PUID: 0 # $PUID # read them from .env
+      PGID: 0 # $PGID # read them from .env
+    networks:
+      - proxy
+
+
+networks:
+  proxy:
+    external: true
+
+
+
+

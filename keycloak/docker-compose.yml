@@ -3,6 +3,7 @@
 #version: '3'
 
 services:
+
   postgresql:
     image: postgres:16
     user: root
@@ -10,15 +11,23 @@ services:
       - POSTGRES_USER=keycloak
       - POSTGRES_DB=keycloak
       - POSTGRES_PASSWORD=keycloak_password
+#      - PUID=0
+#      - GUID=0
     volumes:
-      - ./data/postgresql_data:/var/lib/postgresql/data
-#    networks:
-#      keycloak:
+#      - ~/docker/data/config/keycloak/postgresql_data:/var/lib/postgresql/data
+      - ./postgresql_data:/var/lib/postgresql/data
+
+    restart: unless-stopped
+    networks:
+      - proxy
+
 
   keycloak:
     image: quay.io/keycloak/keycloak:22.0.3
-    restart: always
+    restart: unless-stopped
     command: start
+    networks:
+      - proxy
     depends_on:
       - postgresql
     ports:
@@ -39,26 +48,14 @@ services:
       - KEYCLOAK_ADMIN_PASSWORD=admin
 
     labels:
-      - tsdproxy.enable=true        # labels for tsdproxy
+      - tsdproxy.enable=true    # labels for tsdproxy
       - tsdproxy.name=keycloak
+      - tsdproxy.container_port=9080
+      - tsdproxy.ephemeral=true
 
-#    networks:
-#      proxy:
-#      keycloak:
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.http.routers.keycloak.entrypoints=http"
-#      - "traefik.http.routers.keycloak.rule=Host(`keycloak.yourdomain.com`)"
-#      - "traefik.http.middlewares.keycloak-https-redirect.redirectscheme.scheme=https"
-#      - "traefik.http.routers.keycloak.middlewares=keycloak-https-redirect"
-#      - "traefik.http.routers.keycloak-secure.entrypoints=https"
-#      - "traefik.http.routers.keycloak-secure.rule=Host(`keycloak.yourdomain.com`)"
-#      - "traefik.http.routers.keycloak-secure.tls=true"
-#      - "traefik.http.routers.keycloak-secure.service=keycloak"
-#      - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
-#      - "traefik.docker.network=proxy"
 
-#networks:
-#  proxy:
-#    external: true
-#  keycloak:
+networks:
+  proxy:
+    external: true
+
+

@@ -7,7 +7,7 @@ services:
     hostname: tsdproxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - tsd_data:/data
+      - ~/docker/data/config/tsdproxy:/data
     restart: unless-stopped
     environment:
       - TSDPROXY_AUTHKEY=${TSDPROXY_AUTHKEY}
@@ -17,16 +17,11 @@ services:
       - .env
 
     networks:
-      - tailscale
-
-
-
-volumes:
-    tsd_data:
-      external: true
+      - proxy
 
 
 networks:
-  tailscale:
+  proxy:
     external: true
+
 

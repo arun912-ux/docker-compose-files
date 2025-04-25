@@ -1,0 +1,32 @@
+---
+
+services:
+
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    environment:
+      DOMAIN: "https://vaultwarden.chac-climb.ts.net"
+    volumes:
+      - ~/docker/data/config/vaultwarden:/data
+    ports:
+      - 8088:80
+    networks:
+      - proxy
+
+    labels:
+      - tsdproxy.enable=true    # labels for tsdproxy
+      - tsdproxy.name=vaultwarden
+      - tsdproxy.container_port=8088
+      - tsdproxy.ephemeral=true
+
+
+networks:
+  proxy:
+    external: true
+
+
+
+
+

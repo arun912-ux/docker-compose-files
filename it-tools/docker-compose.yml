@@ -1,6 +1,5 @@
-
 ---
-version: "3"
+
 services:
   it-tools:
     image: 'corentinth/it-tools:latest'  # The Docker image to use.
@@ -8,3 +7,13 @@ services:
       - '8088:80'  # Maps port 80 inside the container to port 8080 on the host.
     restart: unless-stopped  # Ensures the container restarts unless it is explicitly stopped.
     container_name: it-tools  # Custom name for the container.
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+
+
+
+

@@ -1,32 +1,26 @@
 
 ---
-version: '3'
 
 services:
   prowlarr:
     image: linuxserver/prowlarr:develop
-    container_name: Prowlarr
+    container_name: prowlarr
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kolkata
     volumes:
-      - /Servarr/Config/Prowlarr:/config
+      - ~/docker/data/config/prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped
     networks:
-      - arr_stack
-      - traefik_backend
-    
+      arr:
+        ipv4_address: 172.18.0.16
 
 
 networks:
-  arr_stack:
-    external:
-      name: arr_stack
-  traefik_backend:
-    external:
-      name: traefik_backend
+  arr:
+    external: true
 
 

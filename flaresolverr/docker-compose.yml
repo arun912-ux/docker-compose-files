@@ -1,30 +1,27 @@
 ---
-version: '3'
 
 services:
   flaresolverr:
     image: flaresolverr/flaresolverr:latest
-    container_name: Flare_Solverr
+    container_name: flare_solverr
     environment:
-      - PUID=1000
-      - PGID=1000
+#      - PUID=1000
+#      - PGID=1000
       - TZ=Asia/Kolkata
       - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
     volumes:
-      - ./config:/config
+      - ~/docker/data/config/flaresolverr:/config
     ports:
       - 8191:8191
     restart: unless-stopped
-#    networks:
-#     - arr_stack
-#      - traefik_backend
+    networks:
+     arr:
+      ipv4_address: 172.18.0.7
 
 
 
-#networks:
-#  arr_stack:
-#    external:
-#      name: arr_stack
-#  traefik_backend:
-#    external:
-#      name: traefik_backend
+networks:
+  arr:
+    external: true
+
+
