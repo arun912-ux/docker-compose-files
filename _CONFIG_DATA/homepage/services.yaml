@@ -1,0 +1,167 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+
+
+- Hypervisor:
+
+    - Proxmox:
+        href: https://192.168.1.30:8006
+        statusStyle: 'dot'
+        siteMonitor: https://192.168.1.30:8006
+        description: proxmox
+        icon: proxmox
+        widget:
+            type: proxmox
+            url: https://192.168.1.30:8006
+            username: root@pam!homepage
+            password: 34994bf0-2355-4b95-a5e6-4c046475f46b
+            node: pve # optional
+#    - Caddy:
+#        icon: caddy.png
+#        widget:
+#          type: caddy
+#          url: http://192.168.1.39:2019
+
+
+    - PiHole:
+        icon: pi-hole.svg # icons found here https://github.com/walkxcode/dashboard-icons
+        statusStyle: 'dot'
+        href: http://192.168.1.31/admin
+        siteMonitor: http://192.168.1.31
+        description: Pi-Hole
+        widget:
+            type: pihole
+            url: http://192.168.1.31
+            version: 6 # required if running v6 or higher, defaults to 5
+    #          key: Bmo2QGGL6dK4ZEEw4quTminZMwdhaVBiqrSgSQgAs74=
+
+
+- Media:
+
+    - Jellyfin:
+        href: http://100.64.154.118:8096
+        siteMonitor: http://192.168.1.32:8096
+        description: Jellyfin
+        icon: jellyfin
+        widget:
+            type: jellyfin
+            url: http://192.168.1.32:8096
+            key: f4979baa30744d30b67ceaec64ed7aa4
+            enableBlocks: true # optional, defaults to false
+            enableNowPlaying: true # optional, defaults to true
+            enableUser: true # optional, defaults to false
+            showEpisodeNumber: true # optional, defaults to false
+            expandOneStreamToTwoRows: true # optional, defaults to true
+
+
+- Servarr:
+
+    - qBittorrent:
+        icon: qbittorrent.png
+        href: http://100.64.154.118:8084
+        siteMonitor: http://192.168.1.33:8084
+        widget:
+            type: qbittorrent
+            url: http://192.168.1.33:8084
+            username: admin
+            password: adminadmin
+
+    - group1:
+        - Jellyseerr:
+            icon: jellyseerr
+            href: http://100.64.154.118:5055
+            siteMonitor: http://192.168.1.33:5055
+            # widget:
+            #     type: jellyseerr
+            #     url: http://192.168.1.33:5055
+            #     key: MTc0NDY1MzAyMTEzNDhiNWEzMTJiLWU5OTktNGZhMy1hMjNlLTRmNzdhMjQxMGVmMw==
+
+        - Prowlarr:
+            icon: prowlarr
+            href: http://192.168.1.33:9696
+            siteMonitor: http://192.168.1.33:9696
+
+    - group2:
+        - Sonarr:
+            icon: sonarr
+            href: http://192.168.1.33:8989
+            siteMonitor: http://192.168.1.33:8989
+    #          widget:
+    #            type:
+
+        - Radarr:
+            icon: radarr
+            href: http://192.168.1.33:7878
+            siteMonitor: http://192.168.1.33:7878
+
+
+
+
+
+- Tools:
+
+    - it-tools:
+        icon: it-tools
+        href: http://192.168.1.34:8088
+        siteMonitor: http://192.168.1.34:8088
+        description: it-tools
+
+    - Stirling-PDF:
+        icon: stirling-pdf
+        href: http://192.168.1.34:8098
+        siteMonitor: http://192.168.1.34:8098
+        description: PDF tools
+
+    - File Browser:
+#        server: localhost
+#        container: file-browser-filebrowser-1
+        icon: filebrowser
+        href: http://192.168.1.34:8082
+        siteMonitor: http://192.168.1.34:8082
+        description: file browser
+
+    - Gotify:
+        icon: gotify
+        href: http://192.168.1.37:8383
+        siteMonitor: http://192.168.1.37:8383
+        description: Gotify
+
+    - Mazanoke:
+        icon: mazanoke
+        href: http://192.168.1.34:3474
+        siteMonitor: http://192.168.1.34:3474
+        description: Image size tool
+
+    - Code Server:
+        icon: code
+        href: http://192.168.1.90:8680
+        siteMonitor: http://192.168.1.90:8680
+        description: Code Server
+
+    - ExcaliDraw:
+        icon: excalidraw
+        href: https://excalidraw.com
+        siteMonitor: https://excalidraw.com/
+        description: Excali Draw
+
+
+
+- Monitoring:
+
+    - Uptime Kuma:
+        icon: uptime-kuma
+        href: http://192.168.1.37:3031
+        siteMonitor: http://192.168.1.37:3031
+        description: Uptime Kuma
+
+    - Grafana:
+        icon: grafana
+
+    - Prometheus:
+        icon: prometheus
+
+
+
+

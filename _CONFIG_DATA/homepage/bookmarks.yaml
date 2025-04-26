@@ -1,0 +1,29 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/bookmarks
+
+- Developer:
+    - Github:
+        - icon: github-light.png
+          abbr: GitHub
+          href: https://github.com/arun912-ux
+    - GitLab:
+        - href: https://gitlab.com/arun912-ux
+          icon: gitlab.png
+
+
+#- Social:
+#    - Reddit:
+#        - abbr: RE
+#          href: https://reddit.com/
+
+
+- Entertainment:
+    - YouTube:
+        - abbr: YT
+          icon: youtube
+          href: https://youtube.com/
+    - Tailscale:
+        - abbr: TS
+          icon: tailscale-light
+          href: https://login.tailscale.com/admin/machines
