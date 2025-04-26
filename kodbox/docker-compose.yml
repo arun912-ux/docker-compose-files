@@ -1,0 +1,23 @@
+---
+
+services:
+
+  kodbox:
+    image: kodcloud/kodbox
+    container_name: kodbox
+    restart: unless-stopped
+    ports:
+      - "8083:80"
+    volumes:
+      # App files (persistent storage for user settings and uploads)
+      - ~/docker/data/config/kodbox:/var/www/html
+
+      # Mount your actual local files here  ^`^t they appear in Kodbox!
+      - ~/docker/data:/opt/storage/local_files
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+

@@ -36,7 +36,10 @@ The following services are included:
 - Stirling-PDF: a free and open-source PDF editor that can be used online or self-hosted
 - tsdproxy: a reverse proxy that uses the Tailscale network to provide secure access to Docker containers
 - WordPress: a free and open-source content management system (CMS) that is widely used for creating websites and blogs
-
+- Vaultwarden: a self-hosted password manager
+- homepage: a homepage for your server and services
+- KeyCloak: an open-source identity and access management solution
+- kodebox: a self-hosted storage and file sharing solution
 
 ## Shell Scripts
 
