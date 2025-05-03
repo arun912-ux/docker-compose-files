@@ -3,20 +3,14 @@
 services:
 
   kodbox:
-    image: kodcloud/kodbox
+    image: arun912/kodbox-apache2:0.0.2
     container_name: kodbox
     restart: unless-stopped
-    user: "0:0"
+    volumes:
+      - ./media/drive:/opt/storage
+#      - ./site:/var/www/kodbox/data
     ports:
       - "8083:80"
-    volumes:
-      # App files (persistent storage for user settings and uploads)
-      - /media/drive/1.4TB/storage/docker/config/kodbox:/var/www/html
-
-      # Mount your actual local files here  ^`^t they appear in Kodbox!
-      - /media/drive:/var/www/data
-#      - /media/drive/1.4TB/storage:/opt/storage/local
-#      - /media/drive/512G:/opt/storage/512G
 
     networks:
       - proxy
