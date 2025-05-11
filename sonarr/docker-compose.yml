@@ -2,13 +2,14 @@
 
 services:
   sonarr:
-    image: lscr.io/linuxserver/sonarr:develop
+    image: linuxserver/sonarr:develop
     container_name: sonarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=9000
+      - UMASK=002
       - TZ=Asia/Kolkata
-      - SONARR_BRANCH=latest
+      - SONARR_BRANCH=develop
     volumes:
       - ~/docker/data/config/sonarr:/config
       - ~/docker/data/media/tv:/tv

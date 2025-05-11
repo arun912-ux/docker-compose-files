@@ -6,8 +6,9 @@ services:
     image: linuxserver/prowlarr:develop
     container_name: prowlarr
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=9000
+      - UMASK=002
       - TZ=Asia/Kolkata
     volumes:
       - ~/docker/data/config/prowlarr:/config

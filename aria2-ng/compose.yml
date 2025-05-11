@@ -1,0 +1,16 @@
+---
+
+services:
+  ariang:
+    image: hurlenko/aria2-ariang
+    ports:
+      - 8888:8080
+    volumes:
+      - /media/drive/1.4TB/storage/media/downlaods:/aria2/data
+      - /media/drive/1.4TB/storage/docker/config/aria2-ng:/aria2/conf
+    environment:
+      - PUID=0
+      - PGID=9000
+      - RPC_SECRET=secret
+      - ARIA2RPCPORT=8888
+    restart: always

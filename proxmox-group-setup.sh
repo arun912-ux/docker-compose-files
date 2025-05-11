@@ -41,5 +41,6 @@ for CTID in $(pct list | awk 'NR>1 {print $1}'); do
 
     echo "Done with container $CTID"
     echo "--------------------------------------------"
+
 done
 

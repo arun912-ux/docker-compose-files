@@ -6,7 +6,8 @@ services:
     container_name: radarr
     environment:
       - PUID=0
-      - PGID=0
+      - PGID=9000
+      - UMASK=002
       - TZ=Asia/Kolkata
     volumes:
       - ~/docker/data/config/radarr:/config

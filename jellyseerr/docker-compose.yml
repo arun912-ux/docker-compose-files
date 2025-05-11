@@ -3,7 +3,7 @@
 
 services:
   jellyseerr:
-    image: fallenbagel/jellyseerr:develop
+    image: ghcr.io/hotio/jellyseerr:latest
     container_name: jellyseerr
     environment:
       - LOG_LEVEL=info
