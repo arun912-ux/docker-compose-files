@@ -1,0 +1,22 @@
+---
+
+services:
+  fluentd-agent:
+#    image: fluent/fluentd:v1.16-debian-1.0
+    container_name: fluentd-agent
+    build:
+      context: .
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/log:/var/log:ro
+      - ./conf:/fluentd/etc
+    ports:
+      - "24224:24224"
+    restart: unless-stopped
+    networks:
+      - proxy
+
+
+networks:
+  proxy:
+    external: true

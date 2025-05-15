@@ -1,0 +1,57 @@
+---
+
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2.11.1
+    container_name: opensearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - plugins.security.disabled=true
+#      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m  # lower memory usage
+      - OPENSEARCH_JAVA_OPTS=-Xms256m -Xmx256m  # lower memory usage
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    ports:
+      - "9200:9200"
+    networks:
+      - opensearch-net
+
+
+  dashboards:
+    image: opensearchproject/opensearch-dashboards:2.11.1
+    container_name: opensearch-dashboards
+    environment:
+      - OPENSEARCH_HOSTS=http://opensearch:9200
+      - DISABLE_SECURITY_DASHBOARDS_PLUGIN=true  # 🔒 Disable security plugin in Dashboards
+    ports:
+      - "5601:5601"
+    depends_on:
+      - opensearch
+    networks:
+      - opensearch-net
+
+
+  fluentd:
+#    image: fluent/fluentd:v1.16-debian-1.0
+    container_name: fluentd
+    build:
+      context: ./fluentd
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+    depends_on:
+      - opensearch
+    ports:
+      - "24224:24224"
+    networks:
+      - opensearch-net
+
+volumes:
+  opensearch-data:
+
+networks:
+  opensearch-net:
