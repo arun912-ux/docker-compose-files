@@ -2,7 +2,7 @@
 
 services:
   postgres:
-    image: postgres:16  # Or your desired version
+    image: postgres:17  # Or your desired version
     container_name: postgresql
     restart: unless-stopped
     env_file:
