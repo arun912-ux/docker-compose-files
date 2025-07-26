@@ -9,8 +9,10 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Kolkata
+    env_file:
+      - .env
     volumes:
-      - /Servarr/Config/Gotify/config:/config
+      - $CONFIG:/config
     ports:
       - 8383:80
     restart: unless-stopped

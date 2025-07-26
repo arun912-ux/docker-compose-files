@@ -10,12 +10,15 @@ services:
       - PUID=0
       - PGID=9000
       - UMASK=002
+      - UMASK_SET=002
       - TZ=Asia/Kolkata
       - WEBUI_PORT=8084
       - TORRENTING_PORT=6881
     volumes:
-      - ~/docker/data/config/qbittorrent:/config
-      - ~/docker/data/qBittorrent:/downloads
+      - $CONFIG:/config
+      - $DOWNLOADS:/downloads
+      - $TV:/tv
+      - $MOVIES:/movies
     ports:
       - 8084:8084 # WEBUI_PORT:WEBUI_PORT
       - 6881:6881
@@ -30,5 +33,3 @@ services:
 networks:
   arr:
     external: true
-
-

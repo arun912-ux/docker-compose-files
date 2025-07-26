@@ -22,8 +22,8 @@ services:
     
     # Volumes store your data between container upgrades
     volumes:
-      - /Servarr/Config/PiHole/data/etc-pihole:/etc/pihole
-      - /Servarr/Config/PiHole/data/etc-dnsmasq.d:/etc/dnsmasq.d
+      - $PIHOLE_ETC:/etc/pihole
+      - $PIHOLE_DNSMASQ:/etc/dnsmasq.d
     
 
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities

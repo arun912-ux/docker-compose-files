@@ -1,16 +1,28 @@
 ---
 
 services:
-  jenkins: 
-    image: jenkins/jenkins:lts-jdk17
+  jenkins:
+    image: jenkins/jenkins:lts-jdk21
     container_name: jenkins
-    restart: on-failure
+    restart: unless-stopped
     user: 0:0
     ports:
       - "8880:8080"
       - "50000:50000"
-
     volumes:
-      - ./data:/var/jenkins_home:rw
- 
+      - jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    networks:
+      - proxy
+
+
+networks:
+  proxy:
+    external: true
+      
+
+volumes:
+  jenkins_data:
+    external: true
 

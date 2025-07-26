@@ -4,13 +4,14 @@
 update() {
 
     echo $1
-    echo "cd" "/home/arun/Documents/docker-compose-files/$1"
-    cd "/home/arun/Documents/docker-compose-files/$1"
+    echo $PWD
+    echo "cd" "${PWD}/$1"
+    cd "${PWD}/$1"
     echo "updating $1 ..."
-    docker-compose down && docker-compose pull && docker-compose build --pull && docker-compose up -d --force-recreate
+    docker compose down && docker compose pull && docker compose build --pull && docker compose up -d --force-recreate
     while [ $? -ne 0 ]
     do
-        docker-compose down && docker-compose pull && docker-compose build --pull && docker-compose up -d --force-recreate
+        docker compose down && docker compose pull && docker compose build --pull && docker compose up -d --force-recreate
     done
 
 }
@@ -53,6 +54,6 @@ fi
 
 echo "Pruning unused docker images..."
 docker image prune -af
-cd "/home/arun/Documents/docker-compose-files/"
-./docker-image-prune-af.sh
+#cd $PWD
+#./docker-image-prune-af.sh
 

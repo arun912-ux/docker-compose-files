@@ -5,6 +5,8 @@ services:
   adguardhome:
     image: adguard/adguardhome
     container_name: adguard-home
+    env_file:
+      - .env
     ports:
       - 53:53/tcp
       - 53:53/udp
@@ -14,6 +16,7 @@ services:
 #      - 80:80/tcp
 #      - 443:443/tcp
     volumes:
-      - ./workdir:/opt/adguardhome/work
-      - ./confdir:/opt/adguardhome/conf
+      - $WORKDIR:/opt/adguardhome/work
+      - $CONFIGDIR:/opt/adguardhome/conf
     restart: unless-stopped
+

@@ -9,10 +9,12 @@ services:
       - PGID=9000
       - UMASK=002
       - TZ=Asia/Kolkata
+    env_file:
+      - .env
     volumes:
-      - ~/docker/data/config/radarr:/config
-      - ~/docker/data/media/movies:/movies
-      - ~/docker/data/qBittorrent:/downloads
+      - $CONFIG:/config
+      - $MOVIES:/movies
+      - $DOWNLOADS:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -22,5 +24,4 @@ services:
 networks:
   arr:
     external: true
-
 

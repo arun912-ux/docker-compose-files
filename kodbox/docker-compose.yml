@@ -6,9 +6,12 @@ services:
     image: arun912/kodbox-apache2:0.0.2
     container_name: kodbox
     restart: unless-stopped
+    env_file:
+      - .env
+
     volumes:
-      - ./media/drive:/opt/storage
-#      - ./site:/var/www/kodbox/data
+      - $STORAGE:/opt/storage
+      - kodbox:/var/www/kodbox/data
     ports:
       - "8083:80"
 
@@ -17,5 +20,10 @@ services:
 
 networks:
   proxy:
+    external: true
+
+
+volumes:
+  kodbox:
     external: true
 

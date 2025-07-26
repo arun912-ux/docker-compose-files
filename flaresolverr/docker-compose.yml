@@ -5,23 +5,22 @@ services:
     image: flaresolverr/flaresolverr:latest
     container_name: flare_solverr
     environment:
-     - PUID=0
-     - PGID=9000
+      - PUID=0
+      - PGID=9000
       - TZ=Asia/Kolkata
       - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
-    volumes:
-      - ~/docker/data/config/flaresolverr:/config
+#    volumes:
+#      - ~/docker/data/config/flaresolverr:/config
     ports:
       - 8191:8191
     restart: unless-stopped
     networks:
-     arr:
-      ipv4_address: 172.18.0.7
+     - arr
+#      ipv4_address: 172.18.0.7
 
 
 
 networks:
   arr:
     external: true
-
 

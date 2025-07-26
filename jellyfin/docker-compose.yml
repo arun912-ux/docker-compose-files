@@ -1,5 +1,4 @@
 ---
-version: '3'
 
 services:
   jellyfin:
@@ -11,13 +10,15 @@ services:
       - TZ=Asia/Kolkata
       # - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
       - JELLYFIN_PublishedServerUrl=192.168.1.4 #optional
+    env_file:
+      - .env
     volumes:
       #- /Servarr/Config/Jellyfin:/config
       #- jellyfin:/config
       - ./config:/config
-      - /mnt/1.4TB/Servarr/media/tv:/data/tvshows
-      - /mnt/1.4TB/Servarr/media/movies:/data/movies
-      - /mnt/1.4TB/Servarr/media/anime:/data/anime
+      - $TV:/data/tvshows
+      - $MOVIES:/data/movies
+      - $ANIME:/data/anime
     ports:
       - 8096:8096
       # - 8920:8920 # https

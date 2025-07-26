@@ -10,13 +10,15 @@ services:
       - PGID=1000
       - TZ=Asia/Kolkata
     volumes:
-      - /Servarr/Config/Bazarr/config:/config
-      - /mnt/1.4TB/Servarr/media/tv:/tv
-      - /mnt/1.4TB/Servarr/media/movies:/movies
+      - $CONFIG:/config
+      - $TV:/tv
+      - $MOVIES:/movies
       # - /mnt/1.4TB/Servarr/media/anime:/anime
     ports:
       - 6767:6767
     restart: unless-stopped
+    env_file:
+      - .env
     networks:
       - arr_stack
       - traefik_backend

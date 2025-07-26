@@ -11,14 +11,14 @@ services:
     env_file:
       - .env # use .env
     volumes:
-      - ~/docker/data/config/homepage:/app/config # Make sure your local config directory exists
-      - ~/docker/data:/root/docker/data    # drive space
-      - /root/docker/data:/app/drive      # drive
-      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations, see alternative methods
+      - $CONFIG:/app/config # Make sure your local config directory exists#
+#      - ~/docker/data:/root/docker/data    # drive space
+      - $STORAGE:/app/drive      # drive
+#      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations, see alternative methods
     environment:
       TZ: "Asia/Kolkata"
       PUID: 0 # $PUID # read them from .env
-      PGID: 0 # $PGID # read them from .env
+      PGID: 9000 # $PGID # read them from .env
     networks:
       - proxy
 
@@ -26,7 +26,5 @@ services:
 networks:
   proxy:
     external: true
-
-
 
 

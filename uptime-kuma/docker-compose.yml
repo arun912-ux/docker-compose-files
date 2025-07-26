@@ -11,7 +11,7 @@ services:
     ports:
       - 3001:3001
     volumes:
-      - /Servarr/Config/UptimeKuma/data:/app/data
+      - $DATA:/app/data
     restart: unless-stopped
     networks:
       - backend

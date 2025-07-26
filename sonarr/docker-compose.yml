@@ -8,12 +8,15 @@ services:
       - PUID=0
       - PGID=9000
       - UMASK=002
+      - UMASK_SET=002
       - TZ=Asia/Kolkata
       - SONARR_BRANCH=develop
+    env_file:
+      - .env
     volumes:
-      - ~/docker/data/config/sonarr:/config
-      - ~/docker/data/media/tv:/tv
-      - ~/docker/data/qBittorrent:/downloads
+      - $CONFIG:/config
+      - $TV:/tv
+      - $DOWNLOADS:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -24,6 +27,8 @@ services:
 networks:
   arr:
     external: true
+
+
 
 
 

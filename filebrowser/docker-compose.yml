@@ -6,13 +6,15 @@ services:
     restart: unless-stopped
     ports:
       - 8082:80
+    env_file:
+      - .env
 #    environment:
 #      - PGID=${PGID}
 #      - PUID=${PUID}
     volumes:
-      - ~/docker/data/config/filebrowser:/config
-      - ~/docker/data/config/filebrowser:/database
-      - ~/docker/data:/srv
+      - $CONFIG:/config
+      - $DB:/database
+      - $DATA:/srv
 
     networks:
       - proxy

@@ -8,8 +8,10 @@ services:
     restart: unless-stopped
     environment:
       DOMAIN: "https://vaultwarden.chac-climb.ts.net"
+    env_file:
+      - .env
     volumes:
-      - ~/docker/data/config/vaultwarden:/data
+      - $DATA:/data
     ports:
       - 8088:80
     networks:

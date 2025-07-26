@@ -1,7 +1,5 @@
 ---
 
-version: "3"
-
 services:
   agent:
     image: portainer/agent:latest
@@ -13,4 +11,5 @@ services:
     container_name: portainer_agent
     ports:
       - 9001:9001
+
 

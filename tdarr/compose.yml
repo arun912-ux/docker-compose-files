@@ -25,12 +25,14 @@ services:
       - nodeName=MyInternalNode
       # - NVIDIA_DRIVER_CAPABILITIES=all
       # - NVIDIA_VISIBLE_DEVICES=all
+    env_file:
+      - .env
     volumes:
-      - /docker/tdarr/server:/app/server
-      - /docker/tdarr/configs:/app/configs
-      - /docker/tdarr/logs:/app/logs
-      - /media:/media
-      - /transcode_cache:/temp
+      - $SERVER:/app/server
+      - $CONFIGS:/app/configs
+      - $LOGS:/app/logs
+      - $MEDIA:/media
+      - $TEMP:/temp
 
     devices:
       - /dev/dri:/dev/dri

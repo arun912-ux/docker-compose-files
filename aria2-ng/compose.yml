@@ -5,9 +5,11 @@ services:
     image: hurlenko/aria2-ariang
     ports:
       - 8888:8080
+    env_file:
+      - .env
     volumes:
-      - /media/drive/1.4TB/storage/media/downlaods:/aria2/data
-      - /media/drive/1.4TB/storage/docker/config/aria2-ng:/aria2/conf
+      - $DATA:/aria2/data
+      - $CONF:/aria2/conf
     environment:
       - PUID=0
       - PGID=9000

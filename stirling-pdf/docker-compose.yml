@@ -12,13 +12,16 @@ services:
       timeout: 10s
       retries: 5
 
+    env_file:
+      - .env
+
     ports:
       - "8098:8080"
 
     volumes:
-      - ~/docker/data/config/stirling-pdf/data:/usr/share/tessdata:rw
-      - ~/docker/data/config/stirling-pdf/config:/configs:rw
-      - ~/docker/data/config/stirling-pdf/logs:/logs:rw
+      - $DATA:/usr/share/tessdata:rw
+      - $CONFIG:/configs:rw
+      - $LOG:/logs:rw
 
     environment:
       DOCKER_ENABLE_SECURITY: "false"

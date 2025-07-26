@@ -10,8 +10,10 @@ services:
       - TZ=Asia/Kolkata
     ports:
       - 5055:5055
+    env_file:
+      - .env
     volumes:
-      - ~/docker/data/config/jellyseerr:/app/config
+      - $CONFIG:/app/config
     restart: unless-stopped
     networks:
       - arr

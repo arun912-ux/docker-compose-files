@@ -7,8 +7,10 @@ services:
     user: "0:9000"
     ports:
       - "8085:80"
+    env_file:
+      - .env
     volumes:
-      - /media/drive/1.4TB/storage/:/var/www/webdav
+      - $STORAGE:/var/www/webdav
 
     networks:
       - proxy

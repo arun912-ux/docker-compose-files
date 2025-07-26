@@ -1,4 +1,3 @@
-
 ---
 
 services:
@@ -11,17 +10,16 @@ services:
       - UMASK=002
       - TZ=Asia/Kolkata
     volumes:
-      - ~/docker/data/config/prowlarr:/config
+      - $CONFIG:/config
     ports:
       - 9696:9696
     restart: unless-stopped
     networks:
-      arr:
-        ipv4_address: 172.18.0.16
+      - arr
+#        ipv4_address: 172.18.0.16
 
 
 networks:
   arr:
     external: true
-
 
