@@ -2,7 +2,7 @@
 
 services:
   opensearch:
-    image: opensearchproject/opensearch:2.11.1
+    image: opensearchproject/opensearch:3.3.2
     container_name: opensearch
     restart: unless-stopped
     environment:
