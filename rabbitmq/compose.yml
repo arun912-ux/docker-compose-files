@@ -1,0 +1,22 @@
+---
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: root123
+      # optionally default vhost etc
+    volumes:
+      # Bind host directories for data, logs (optional)
+      - ./rabbitmq_data:/var/lib/rabbitmq
+      - ./rabbitmq_logs:/var/log/rabbitmq
+      # If you want to provide your own config:
+      # - ./rabbitmq_conf/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+    restart: unless-stopped
+
+

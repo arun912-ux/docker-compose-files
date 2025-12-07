@@ -1,0 +1,22 @@
+---
+akhq:
+  server:
+    http:
+      port: 8080
+  connections:
+    kafka:
+      # Default Kafka Cluster
+      default:
+        bootstrapServers: "192.168.1.71:9092"  # Change this to your Kafka broker
+        schemaRegistryUrl: "http://192.168.1.71:8081"  # Optional if using Schema Registry
+        consumer:
+          groupId: "akhq-consumer-1"
+  security:
+    authorization:
+      enabled: false  # Set this to 'true' if you want to enable authorization
+
+# Optional: Enable the web console for monitoring
+#akhq:
+  ui:
+    enabled: true
+

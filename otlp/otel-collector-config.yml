@@ -1,0 +1,29 @@
+
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+exporters:
+  logging:
+    loglevel: debug
+  # You can add other exporters, e.g. jaeger, otlphttp, prometheus, etc.
+  # jaeger:
+  #   endpoint: "http://jaeger:14250"
+  #   tls:
+  #     insecure: true
+
+processors:
+  batch:
+    timeout: 10s
+    send_batch_size: 1000
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging]
+
+

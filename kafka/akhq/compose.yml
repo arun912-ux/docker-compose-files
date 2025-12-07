@@ -1,0 +1,18 @@
+
+---
+
+services:
+  akhq:
+    image: tchiotludo/akhq:latest
+    container_name: akhq
+    environment:
+      - AKHQ_SERVER_HTTP_PORT=8080
+      - AKHQ_CONNECTIONS_KAFKA_DEFAULT_BOOTSTRAPSERVERS=192.168.1.71:9092
+      - AKHQ_CONNECTIONS_KAFKA_DEFAULT_SCHEMAREGISTRYURL=http:192.168.1.71:8081
+      - AKHQ_SECURITY_AUTHORIZATION_ENABLED=false
+    volumes:
+      - ./application.yml:/app/application.yml
+    ports:
+      - "8780:8080"
+    restart: unless-stopped
+
