@@ -1,17 +1,21 @@
----
 
 
 services:
+
   otel-collector:
-    image: otel/opentelemetry-collector-contrib:latest
     container_name: otel-collector
-    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    image: otel/opentelemetry-collector-contrib:latest
     volumes:
-      - ./otel-collector-config.yml:/etc/otelcol-contrib/config.yaml:ro
+      - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    env_file: .env
     ports:
-      - "4317:4317"   # OTLP gRPC receiver (for clients using grpc)
-      - "4318:4318"   # OTLP HTTP receiver (for clients using HTTP)
-      - "8888:8888"   # (optional) Prometheus exporter / metrics scraping
-      - "13133:13133" # (optional) health check / readiness
+      - 1888:1888 # pprof extension
+      - 8888:8888 # Prometheus metrics exposed by the Collector
+      - 8889:8889 # Prometheus exporter metrics
+      - 13133:13133 # health_check extension
+      - 4317:4317 # OTLP gRPC receiver
+      - 4318:4318 # OTLP http receiver
+      - 55679:55679 # zpages extension
     restart: unless-stopped
+
 

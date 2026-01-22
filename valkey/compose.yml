@@ -1,0 +1,24 @@
+---
+
+services:
+  valkey:
+    image: valkey/valkey:latest
+    container_name: valkey
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    volumes:
+      - ./valkey_data:/data
+    environment:
+      # Use a password in production environments
+      - ALLOW_EMPTY_PASSWORD=yes
+      - VALKEY_PASSWORD=root123 # username: default
+      - VALKEY_ENABLE_METRICS=yes
+      - VALKEY_METRICS_PORT=9121
+
+
+#volumes:
+#  valkey_data:
+#    driver: local
+
+

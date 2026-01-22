@@ -3,7 +3,7 @@
 
 services:
   jellyseerr:
-    image: ghcr.io/hotio/jellyseerr:latest
+    image: ghcr.io/hotio/seerr:latest
     container_name: jellyseerr
     environment:
       - LOG_LEVEL=info
