@@ -1,0 +1,16 @@
+
+services:
+
+  kodbox:
+    image: kodcloud/kodbox:latest
+    ports:
+      - 8084:80                       #左边80是使用端口，可以修改
+    volumes:
+      - "./site:/var/www/html"      #./site是站点目录位置，可以修改
+      - /data:/opt/data
+    environment:
+      - PUID:0
+      - PGID:0
+    restart: unless-stopped
+
+

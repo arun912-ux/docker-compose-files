@@ -1,19 +1,20 @@
 ---
 
-
 services:
-  jellyseerr:
+  seerr:
     image: ghcr.io/hotio/seerr:latest
     container_name: jellyseerr
+    user: 0:0
     environment:
       - LOG_LEVEL=info
       - TZ=Asia/Kolkata
+      - PUID=0
+      - PGID=0
+      - UMASK=002
     ports:
       - 5055:5055
-    env_file:
-      - .env
     volumes:
-      - $CONFIG:/app/config
+      - /host_opt/appdata/seerr:/app/config
     restart: unless-stopped
     networks:
       - arr

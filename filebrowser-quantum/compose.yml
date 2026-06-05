@@ -1,0 +1,29 @@
+services:
+
+  filebrowser:
+    image: gtstef/filebrowser:stable-slim
+    user: "0:0"
+
+    volumes:
+      - /data:/mergerfs_data
+      - /host_opt:/host_opt
+      - /host_opt/appdata/filebrowser-quantum:/home/filebrowser/data
+
+    networks:
+      - proxy
+
+    ports:
+      - 8082:80 # exposes port 80 to host, the left-side number can be changed without config.yaml changes.
+
+    restart: unless-stopped
+
+
+networks:
+  proxy:
+    external: true
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+services:
+
+  cloudcmd:
+    image: coderaiser/cloudcmd
+    user: 0:0
+    ports:
+      - 8000:8000
+    volumes:
+      - /data:/data    # /data -> mergerfs_data
+    networks:
+      - proxy
+    restart: unless-stopped
+
+
+networks:
+  proxy:
+    external: true

@@ -1,22 +1,24 @@
 ---
 
 services:
+
   prowlarr:
-    image: linuxserver/prowlarr:develop
+    image: ghcr.io/hotio/prowlarr:latest
     container_name: prowlarr
     environment:
       - PUID=0
-      - PGID=9000
+      - PGID=0
       - UMASK=002
       - TZ=Asia/Kolkata
+      - WEBUI_PORTS=9696/tcp 
     volumes:
-      - $CONFIG:/config
+      - /host_opt/appdata/prowlarr:/config
+      # - /data:/data
     ports:
       - 9696:9696
     restart: unless-stopped
     networks:
       - arr
-#        ipv4_address: 172.18.0.16
 
 
 networks:

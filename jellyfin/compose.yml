@@ -1,0 +1,33 @@
+---
+
+services:
+  jellyfin:
+
+    image: ghcr.io/hotio/jellyfin:latest
+    container_name: Jellyfin
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Kolkata
+      - UMASK=002
+      - WEBUI_PORTS=8096/tcp
+      # - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+      - JELLYFIN_PublishedServerUrl=192.168.1.32 #optional
+    # env_file:
+    #   - .env
+    volumes:
+      - /data:/data
+      - /host_opt/appdata/jellyfin:/config
+    ports:
+      - 8096:8096
+      # - 8920:8920 # https
+      # - 7359:7359/udp #optional
+      # - 1900:1900/udp #optional
+
+    devices:
+      # This passes the Intel GPU into the container
+      - /dev/dri/card0:/dev/dri/card0
+      - /dev/dri/renderD128:/dev/dri/renderD128
+
+    restart: unless-stopped
+

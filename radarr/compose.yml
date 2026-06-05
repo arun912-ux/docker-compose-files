@@ -2,19 +2,16 @@
 
 services:
   radarr:
-    image: linuxserver/radarr:develop
+    image: ghcr.io/hotio/radarr:latest
     container_name: radarr
     environment:
       - PUID=0
-      - PGID=9000
+      - PGID=0
       - UMASK=002
       - TZ=Asia/Kolkata
-    env_file:
-      - .env
     volumes:
-      - $CONFIG:/config
-      - $MOVIES:/movies
-      - $DOWNLOADS:/downloads
+      - /host_opt/appdata/radarr:/config
+      - /data:/data
     ports:
       - 7878:7878
     restart: unless-stopped
