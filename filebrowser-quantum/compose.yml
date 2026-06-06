@@ -9,6 +9,12 @@ services:
       - /host_opt:/host_opt
       - /host_opt/appdata/filebrowser-quantum:/home/filebrowser/data
 
+      # direct drives
+      - /media/drive/1.4TB:/media/drive/1.4TB
+      - /media/drive/300G:/media/drive/300G
+      - /media/drive/500G:/media/drive/500G
+
+
     networks:
       - proxy
 

@@ -16,8 +16,6 @@ services:
     restart: unless-stopped
     networks:
      - arr
-#      ipv4_address: 172.18.0.7
-
 
 
 networks:
