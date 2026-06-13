@@ -3,7 +3,7 @@
 services:
   seerr:
     image: ghcr.io/hotio/seerr:latest
-    container_name: jellyseerr
+    container_name: seerr
     user: 0:0
     environment:
       - LOG_LEVEL=info
@@ -18,6 +18,10 @@ services:
     restart: unless-stopped
     networks:
       - arr
+    dns:
+      - 9.9.9.9 
+      - 1.1.1.1
+      - 8.8.8.8
 
 
 networks:

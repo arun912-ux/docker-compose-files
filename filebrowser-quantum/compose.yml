@@ -3,7 +3,8 @@ services:
   filebrowser:
     image: gtstef/filebrowser:stable-slim
     user: "0:0"
-
+    command: ["--config", "/home/filebrowser/data/config.yaml"]
+    
     volumes:
       - /data:/mergerfs_data
       - /host_opt:/host_opt
