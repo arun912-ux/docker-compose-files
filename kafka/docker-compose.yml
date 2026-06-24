@@ -3,7 +3,7 @@
 services:
 
   broker:
-    image: confluentinc/cp-kafka:7.8.0
+    image: confluentinc/cp-kafka:7.9.5
     hostname: broker
     container_name: broker
     user: "0:9000"
