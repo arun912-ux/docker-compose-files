@@ -6,19 +6,19 @@ services:
     image: confluentinc/cp-kafka:7.8.0
     hostname: broker
     container_name: broker
-    user: "0:9000"
+    user: "0:0"
     restart: unless-stopped
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
     ports:
       - "9092:9092"
       - "9101:9101"
     volumes:
-      - $KAFKA_DATA:/var/lib/kafka/data
+      - /host_opt/appdata/kafka:/var/lib/kafka/data
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
-      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://broker:29092,PLAINTEXT_HOST://192.168.1.71:9092'
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://broker:29092,PLAINTEXT_HOST://192.168.1.61:9092'
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
@@ -40,6 +40,7 @@ services:
     image: confluentinc/cp-schema-registry:7.8.0
     hostname: schema-registry
     container_name: schema-registry
+    user: "0:0"
     depends_on:
       - broker
     ports:
@@ -49,5 +50,24 @@ services:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:29092'
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+
+
+  kafka-ui:
+    image: ghcr.io/kafbat/kafka-ui:latest
+    container_name: kafka-ui
+    user: "0:0"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - broker
+      - schema-registry
+    restart: unless-stopped
+    environment:
+      DYNAMIC_CONFIG_ENABLED: 'true'
+      # Configures the UI to point to your internal Kafka broker
+      KAFKA_CLUSTERS_0_NAME: kafka-ct
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: broker:29092
+      # Automatically links the UI to your schema registry container
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8081
 
 
