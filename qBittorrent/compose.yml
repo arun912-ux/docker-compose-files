@@ -14,16 +14,14 @@ services:
       - TZ=Asia/Kolkata
       - WEBUI_PORT=8084
       - TORRENTING_PORT=6881
-    # volumes:
-    #   - $CONFIG:/config
-    #   - $DOWNLOADS:/downloads
-    #   - $TV:/tv
-    #   - $MOVIES:/movies
+
     volumes:
-      - /host_opt/appdata/qbittorrent:/config
-      - /data:/data
+      - ~/Server/appdata/qbittorrent:/config
+      - /mnt/mergerfs_storage/mergerfs_data:/data 
+
+
     ports:
-      - 8084:8084 # WEBUI_PORT:WEBUI_PORT
+      - 8084:8084             # WEBUI_PORT:WEBUI_PORT
       - 6881:6881
       - 6881:6881/udp
     restart: unless-stopped

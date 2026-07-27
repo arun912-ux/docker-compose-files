@@ -3,12 +3,13 @@ services:
   filebrowser:
     image: gtstef/filebrowser:stable-slim
     user: "0:0"
-    command: ["--config", "/home/filebrowser/data/config.yaml"]
     
     volumes:
-      - /data:/mergerfs_data
-      - /host_opt:/host_opt
-      - /host_opt/appdata/filebrowser-quantum:/home/filebrowser/data
+      - /mnt/mergerfs_storage:/mergerfs_data
+      - /mnt:/mnt
+      - /home/arun:/home/arun
+      # - /host_opt:/host_opt
+      - ~/Server/appdata/filebrowser-quantum:/home/filebrowser/data
 
       # direct drives
       - /media/drive/1.4TB:/media/drive/1.4TB

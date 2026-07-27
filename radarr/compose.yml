@@ -1,5 +1,6 @@
 ---
 services:
+
   radarr:
     image: ghcr.io/hotio/radarr:latest
     container_name: radarr
@@ -9,8 +10,10 @@ services:
       - UMASK=002
       - TZ=Asia/Kolkata
     volumes:
-      - /host_opt/appdata/radarr:/config
-      - /data:/data
+      - ~/Server/appdata/radarr:/config
+      - /mnt:/mnt
+      - /mnt/mergerfs_storage/mergerfs_data:/data
+
     ports:
       - 7878:7878
     restart: unless-stopped

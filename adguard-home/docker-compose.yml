@@ -1,22 +1,23 @@
 ---
-#version: "3"
 
 services:
   adguardhome:
-    image: adguard/adguardhome
+    image: adguard/adguardhome:latest
     container_name: adguard-home
-    env_file:
-      - .env
-    ports:
-      - 53:53/tcp
-      - 53:53/udp
-      - 784:784/udp    # DNS-over-QUIC
-      - 853:853/tcp    # DNS-over-TLS
-      - 3000:3000/tcp  # admin panel
+#    env_file:
+#      - .env
+    user: "0:0"
+    network_mode: host
+#    ports:
+#      - 53:53/tcp
+#      - 53:53/udp
+#      - 784:784/udp    # DNS-over-QUIC
+#      - 853:853/tcp    # DNS-over-TLS
+#      - 3000:3000/tcp  # admin panel
 #      - 80:80/tcp
 #      - 443:443/tcp
     volumes:
-      - $WORKDIR:/opt/adguardhome/work
-      - $CONFIGDIR:/opt/adguardhome/conf
+      - ~/Server/appdata/adguardhome/work:/opt/adguardhome/work
+      - ~/Server/appdata/adguardhome/conf:/opt/adguardhome/conf
     restart: unless-stopped
 

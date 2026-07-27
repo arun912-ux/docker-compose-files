@@ -1,6 +1,7 @@
 ---
 
 services:
+
   sonarr:
     image: ghcr.io/hotio/sonarr:latest
     container_name: sonarr
@@ -10,10 +11,10 @@ services:
       - UMASK=002
       - UMASK_SET=002
       - TZ=Asia/Kolkata
-      - SONARR_BRANCH=develop
     volumes:
-      - /host_opt/appdata/sonarr:/config
-      - /data:/data
+      - ~/Server/appdata/sonarr:/config
+      - /mnt/mergerfs_storage/mergerfs_data:/data
+
     ports:
       - 8989:8989
     restart: unless-stopped

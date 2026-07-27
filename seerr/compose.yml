@@ -14,7 +14,7 @@ services:
     ports:
       - 5055:5055
     volumes:
-      - /host_opt/appdata/seerr:/app/config
+      - ~/Server/appdata/seerr:/app/config
     restart: unless-stopped
     networks:
       - arr
