@@ -1,0 +1,31 @@
+---
+
+services:
+  sftpgo:
+    image: drakkan/sftpgo:slim
+    container_name: sftpgo
+    user: "0:0"
+    restart: unless-stopped
+    ports:
+      - "8086:8080"  # Web Admin UI & HTTP API
+      - "2022:2022"  # SFTP Service
+      - "2121:2121"  # FTP/S Service (Optional)
+      - "8090:8090"  # WebDAV Service (Optional)
+    environment:
+      - SFTPGO_LOG_LEVEL=info
+      # Enable built-in services if needed (1 = enabled, 0 = disabled)
+      - SFTPGO_FTPD__BINDINGS__0__PORT=2121
+      - SFTPGO_WEBDAVD__BINDINGS__0__PORT=8090
+    volumes:
+      - ~/:/srv/sftpgo                             # Shared data, user homes, and host keys
+      - ~/Server/appdata/sftpgo:/var/lib/sftpgo    # SQLite database and configuration files
+
+    networks:
+      - proxy
+
+
+
+networks:
+  proxy:
+    external: true
+
