@@ -15,10 +15,11 @@ services:
       - SFTPGO_LOG_LEVEL=info
       # Enable built-in services if needed (1 = enabled, 0 = disabled)
       - SFTPGO_FTPD__BINDINGS__0__PORT=2121
+      - SFTPGO_FTPD__BINDINGS__0__ADDRESS=0.0.0.0
       - SFTPGO_WEBDAVD__BINDINGS__0__PORT=8090
     volumes:
-      - ~/:/srv/sftpgo                             # Shared data, user homes, and host keys
-      - ~/Server/appdata/sftpgo:/var/lib/sftpgo    # SQLite database and configuration files
+      - /:/srv/sftpgo                             # Shared data, user homes, and host keys
+      - /home/arun/Server/appdata/sftpgo:/var/lib/sftpgo    # SQLite database and configuration files
 
     networks:
       - proxy

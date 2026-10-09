@@ -17,7 +17,7 @@ services:
 #      - 80:80/tcp
 #      - 443:443/tcp
     volumes:
-      - ~/Server/appdata/adguardhome/work:/opt/adguardhome/work
-      - ~/Server/appdata/adguardhome/conf:/opt/adguardhome/conf
+      - /home/arun/Server/appdata/adguardhome/work:/opt/adguardhome/work
+      - /home/arun/Server/appdata/adguardhome/conf:/opt/adguardhome/conf
     restart: unless-stopped
 

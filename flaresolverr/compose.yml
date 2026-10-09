@@ -11,7 +11,7 @@ services:
       - TZ=Asia/Kolkata
       - CAPTCHA_SOLVER=${CAPTCHA_SOLVER:-none}
 #    volumes:
-#      - ~/docker/data/config/flaresolverr:/config
+#      - /home/arun/Server/appdata/flaresolverr:/config
     ports:
       - 8191:8191
 

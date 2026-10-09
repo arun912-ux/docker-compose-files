@@ -12,7 +12,7 @@ services:
       - TZ=Asia/Kolkata
       - WEBUI_PORTS=9696/tcp 
     volumes:
-      - ~/Server/appdata/prowlarr:/config
+      - /home/arun/Server/appdata/prowlarr:/config
       # - /data:/data
     ports:
       - 9696:9696

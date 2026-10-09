@@ -3,18 +3,23 @@ services:
   filebrowser:
     image: gtstef/filebrowser:stable-slim
     user: "0:0"
-    
+    container_name: filebrowser
+    # environment:
+      # - FILEBROWSER_CONFIG=/home/filebrowser/data/config.yaml
+      # - FILEBROWSER_DATABASE=/home/filebrowser/data/filebrowser.sqlite
+
     volumes:
       - /mnt/mergerfs_storage:/mergerfs_data
       - /mnt:/mnt
       - /home/arun:/home/arun
       # - /host_opt:/host_opt
-      - ~/Server/appdata/filebrowser-quantum:/home/filebrowser/data
+      - /home/arun/Server/appdata/filebrowser-quantum:/home/filebrowser/data
+
 
       # direct drives
-      - /media/drive/1.4TB:/media/drive/1.4TB
-      - /media/drive/300G:/media/drive/300G
-      - /media/drive/500G:/media/drive/500G
+      - /mnt/1.4TB:/media/drive/1.4TB
+      - /mnt/300G:/media/drive/300G
+      - /mnt/500G:/media/drive/500G
 
 
     networks:

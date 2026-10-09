@@ -1,0 +1,23 @@
+---
+services:
+  doplarr:
+    container_name: doplarr_rs
+    image: ghcr.io/hotio/doplarr
+    environment:
+      - PUID=0
+      - PGID=0
+      - UMASK=002
+      - TZ=Etc/UTC
+    volumes:
+      - /home/arun/Server/appdata/doplarr:/config
+    
+    restart: unless-stopped
+
+    networks:
+      - arr
+
+
+networks:
+  arr:
+    external: true
+

@@ -14,7 +14,7 @@ services:
     ports:
       - 5055:5055
     volumes:
-      - ~/Server/appdata/seerr:/config
+      - /home/arun/Server/appdata/seerr:/config
     restart: unless-stopped
     networks:
       - arr

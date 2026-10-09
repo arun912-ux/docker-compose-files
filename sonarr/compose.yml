@@ -12,7 +12,7 @@ services:
       - UMASK_SET=002
       - TZ=Asia/Kolkata
     volumes:
-      - ~/Server/appdata/sonarr:/config
+      - /home/arun/Server/appdata/sonarr:/config
       - /mnt/mergerfs_storage/mergerfs_data:/data
 
     ports:

@@ -10,7 +10,7 @@ services:
       - UMASK=002
       - TZ=Asia/Kolkata
     volumes:
-      - ~/Server/appdata/radarr:/config
+      - /home/arun/Server/appdata/radarr:/config
       - /mnt:/mnt
       - /mnt/mergerfs_storage/mergerfs_data:/data
 
